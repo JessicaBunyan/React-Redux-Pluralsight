@@ -3,25 +3,14 @@ import PropTypes from 'prop-types'
 import {connect} from "react-redux";
 import * as courseActions from "../../actions/courseActions";
 import {bindActionCreators} from "redux";
+import CourseList from './CourseList';
 
 class CoursesPage extends Component {
 
   constructor(props, context){
     super(props,context);
-    this.state = {
-      course: {title: ""}
-    };
   }
 
-  onTitleChange(event){
-    const course = this.state.course;
-    course.title = event.target.value;
-    this.setState({course: course});
-  }
-
-  onClickSave(){
-    this.props.actions.createCourse(this.state.course);
-  }
 
   courseRow(course, index){
     return (
@@ -33,20 +22,14 @@ class CoursesPage extends Component {
   }
 
   render() {
+    const {courses} = this.props;
     return (
       <div>
           <h1>Courses</h1>
-          {this.props.courses.map(this.courseRow)}
 
-          <h2>Add Course</h2>
-          <input
-            type="text"
-            onChange={(e) => this.onTitleChange(e)}
-            value={this.state.course.title} />
-            <input
-              type="submit"
-              value="Save"
-              onClick={(e) => this.onClickSave(e)} />
+          <CourseList courses={courses} />
+
+
       </div>
     );
   }

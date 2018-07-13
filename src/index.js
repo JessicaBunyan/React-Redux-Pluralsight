@@ -7,9 +7,11 @@ import routes from './routes';
 import './styles/styles.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import {Provider} from 'react-redux';
-
+import {loadCourses} from "./actions/courseActions"
 
 const store = configureStore(); //might want to use this to rehydrate state from local storage e.g
+store.dispatch(loadCourses());
+
 
 render(
     <Provider store={store}>
